@@ -1,2 +1,3 @@
 rootProject.name = 'Kotlin-Coroutines-Utils'
 
+include 'common'
