@@ -8,5 +8,5 @@
 Gradle:
 
 ```groovy
-implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.0.0'
+implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.0.1'
 ```
