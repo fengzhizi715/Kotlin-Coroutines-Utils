@@ -1,5 +1,6 @@
 package com.safframework.kotlin.coroutines.extension
 
+import com.safframework.kotlin.coroutines.uiScope
 import kotlinx.coroutines.*
 
 /**
@@ -10,6 +11,17 @@ import kotlinx.coroutines.*
  * @date: 2019-10-11 10:23
  * @version: V1.0 <描述当前版本功能>
  */
+
+infix fun <T> Deferred<T>.then(block: (T) -> Unit) = uiScope().launch {
+
+    block(this@then.await())
+}
+
+infix fun <T, R> Deferred<T>.thenAsync(block: (T) -> R)= uiScope().async {
+
+    block(this@thenAsync.await())
+}
+
 suspend fun <T> Deferred<T>.awaitOrNull(timeout: Long = 0L) = try {
 
     if (timeout > 0) {
