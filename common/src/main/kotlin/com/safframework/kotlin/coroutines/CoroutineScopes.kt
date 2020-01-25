@@ -11,11 +11,13 @@ import kotlinx.coroutines.*
  * @date: 2019-10-16 02:08
  * @version: V1.0 <描述当前版本功能>
  */
-val UI: CoroutineDispatcher = Dispatchers.Main
+val UI: CoroutineDispatcher        = Dispatchers.Main
 
-val IO: CoroutineDispatcher      = Dispatchers.IO
+val IO: CoroutineDispatcher        = Dispatchers.IO
 
-val Default: CoroutineDispatcher = Dispatchers.Default
+val Default: CoroutineDispatcher   = Dispatchers.Default
+
+val Unconfined:CoroutineDispatcher = Dispatchers.Unconfined
 
 // 运行在主线程，支持异常处理、无返回结果
 fun runOnUI(block: suspend CoroutineScope.() -> Unit) = uiScope().launch(block = block)
