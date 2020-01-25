@@ -19,6 +19,32 @@ val Default: CoroutineDispatcher   = Dispatchers.Default
 
 val Unconfined:CoroutineDispatcher = Dispatchers.Unconfined
 
+
+suspend fun <T> withUI(block: suspend () -> T): T {
+    return withContext(UI) {
+        block()
+    }
+}
+
+suspend fun <T> withIO(block: suspend () -> T): T {
+    return withContext(IO) {
+        block()
+    }
+}
+
+suspend fun <T> withDefault(block: suspend () -> T): T {
+    return withContext(Default) {
+        block()
+    }
+}
+
+suspend fun <T> withUnconfined(block: suspend () -> T): T {
+    return withContext(Unconfined) {
+        block()
+    }
+}
+
+
 // 运行在主线程，支持异常处理、无返回结果
 fun runOnUI(block: suspend CoroutineScope.() -> Unit) = uiScope().launch(block = block)
 
