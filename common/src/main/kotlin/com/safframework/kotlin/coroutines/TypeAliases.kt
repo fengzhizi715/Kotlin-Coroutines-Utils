@@ -9,3 +9,5 @@ package com.safframework.kotlin.coroutines
  * @version: V1.0 <描述当前版本功能>
  */
 typealias action<T> = suspend () -> T
+
+typealias mapper<T,R> = (T) -> R

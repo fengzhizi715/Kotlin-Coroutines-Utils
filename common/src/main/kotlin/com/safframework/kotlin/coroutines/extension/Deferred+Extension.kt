@@ -1,5 +1,6 @@
 package com.safframework.kotlin.coroutines.extension
 
+import com.safframework.kotlin.coroutines.mapper
 import com.safframework.kotlin.coroutines.uiScope
 import kotlinx.coroutines.*
 
@@ -17,7 +18,7 @@ infix fun <T> Deferred<T>.then(block: (T) -> Unit) = uiScope().launch {
     block(this@then.await())
 }
 
-infix fun <T, R> Deferred<T>.thenAsync(block: (T) -> R)= uiScope().async {
+infix fun <T, R> Deferred<T>.thenAsync(block: mapper<T,R>)= uiScope().async {
 
     block(this@thenAsync.await())
 }
@@ -41,14 +42,14 @@ suspend fun <T> Deferred<T>.awaitOrNull(timeout: Long = 0L) = try {
     null
 }
 
-suspend fun <T, R> Deferred<T>.map(mapper: (T) -> R): Deferred<R> =
+suspend fun <T, R> Deferred<T>.map(mapper: mapper<T,R>): Deferred<R> =
     coroutineScope {
         async {
             mapper(this@map.await())
         }
     }
 
-suspend fun <K, T : Collection<K>, R> Deferred<T>.flatMap(coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, mapper: (K) -> R): Deferred<Collection<R>> =
+suspend fun <K, T : Collection<K>, R> Deferred<T>.flatMap(coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, mapper: mapper<K,R>): Deferred<Collection<R>> =
     coroutineScope {
         async(start = coroutineStart) {
             val result = mutableListOf<R>()
@@ -59,7 +60,7 @@ suspend fun <K, T : Collection<K>, R> Deferred<T>.flatMap(coroutineStart: Corout
         }
     }
 
-suspend fun <K, T : Collection<K>, R> Deferred<T>.concatMap(coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, mapper: (K) -> R): Deferred<Collection<R>> =
+suspend fun <K, T : Collection<K>, R> Deferred<T>.concatMap(coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, mapper: mapper<K,R>): Deferred<Collection<R>> =
     coroutineScope {
         async(start = coroutineStart) {
             await().map { async { mapper(it) } }.map { it.await() }
