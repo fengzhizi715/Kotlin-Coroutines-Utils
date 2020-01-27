@@ -20,19 +20,19 @@ val Default: CoroutineDispatcher   = Dispatchers.Default
 val Unconfined:CoroutineDispatcher = Dispatchers.Unconfined
 
 
-suspend fun <T> withUI(block: suspend () -> T): T = withContext(UI) {
+suspend fun <T> withUI(block: action<T>): T = withContext(UI) {
     block()
 }
 
-suspend fun <T> withIO(block: suspend () -> T): T  = withContext(IO) {
+suspend fun <T> withIO(block: action<T>): T  = withContext(IO) {
     block()
 }
 
-suspend fun <T> withDefault(block: suspend () -> T): T  = withContext(Default) {
+suspend fun <T> withDefault(block: action<T>): T  = withContext(Default) {
     block()
 }
 
-suspend fun <T> withUnconfined(block: suspend () -> T): T  = withContext(Unconfined) {
+suspend fun <T> withUnconfined(block: action<T>): T  = withContext(Unconfined) {
     block()
 }
 
