@@ -2,6 +2,7 @@ package com.safframework.kotlin.coroutines.extension
 
 import com.safframework.kotlin.coroutines.mapper
 import com.safframework.kotlin.coroutines.uiScope
+import com.safframework.kotlin.coroutines.zipper
 import kotlinx.coroutines.*
 
 /**
@@ -67,13 +68,13 @@ suspend fun <K, T : Collection<K>, R> Deferred<T>.concatMap(coroutineStart: Coro
         }
     }
 
-suspend fun <T1, T2, R> zip(source1: Deferred<T1>, source2: Deferred<T2>, coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, zipper: (T1, T2) -> R): Deferred<R> =
+suspend fun <T1, T2, R> zip(source1: Deferred<T1>, source2: Deferred<T2>, coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, zipper: zipper<T1, T2, R>): Deferred<R> =
     coroutineScope {
         async(start = coroutineStart) {
             zipper(source1.await(), source2.await())
         }
     }
 
-suspend fun <T1, T2, R> Deferred<T1>.zipWith(other: Deferred<T2>, coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, zipper: (T1, T2) -> R): Deferred<R> {
+suspend fun <T1, T2, R> Deferred<T1>.zipWith(other: Deferred<T2>, coroutineStart: CoroutineStart = CoroutineStart.DEFAULT, zipper: zipper<T1, T2, R>): Deferred<R> {
     return zip(this, other, coroutineStart, zipper)
 }
