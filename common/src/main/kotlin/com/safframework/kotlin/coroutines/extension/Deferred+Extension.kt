@@ -1,6 +1,7 @@
 package com.safframework.kotlin.coroutines.extension
 
 import com.safframework.kotlin.coroutines.mapper
+import com.safframework.kotlin.coroutines.uiScope
 import com.safframework.kotlin.coroutines.zipper
 import kotlinx.coroutines.*
 
@@ -13,16 +14,14 @@ import kotlinx.coroutines.*
  * @version: V1.0 <描述当前版本功能>
  */
 
-suspend infix fun <T> Deferred<T>.then(block: (T) -> Unit) = coroutineScope {
-    launch {
-        block(this@then.await())
-    }
+infix fun <T> Deferred<T>.then(block: (T) -> Unit) = uiScope().launch {
+
+    block(this@then.await())
 }
 
-suspend infix fun <T, R> Deferred<T>.thenAsync(block: mapper<T,R>)= coroutineScope {
-    async {
-        block(this@thenAsync.await())
-    }
+infix fun <T, R> Deferred<T>.thenAsync(block: mapper<T,R>)= uiScope().async {
+
+    block(this@thenAsync.await())
 }
 
 suspend fun <T> Deferred<T>.awaitOrNull(timeout: Long = 0L) = try {
