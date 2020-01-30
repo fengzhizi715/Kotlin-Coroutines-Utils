@@ -1,6 +1,11 @@
 package com.safframework.kotlin.coroutines.extension
 
+import com.safframework.kotlin.coroutines.uiScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  *
@@ -14,4 +19,12 @@ fun Job.safeCancel() {
     if (isActive) {
         cancel()
     }
+}
+
+inline fun Job.then(
+    context: CoroutineContext = EmptyCoroutineContext,
+    crossinline block: suspend CoroutineScope.() -> Unit
+): Job = uiScope().launch(context) {
+    join()
+    block()
 }

@@ -4,6 +4,8 @@ import com.safframework.kotlin.coroutines.mapper
 import com.safframework.kotlin.coroutines.uiScope
 import com.safframework.kotlin.coroutines.zipper
 import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  *
@@ -13,6 +15,13 @@ import kotlinx.coroutines.*
  * @date: 2019-10-11 10:23
  * @version: V1.0 <描述当前版本功能>
  */
+
+inline fun <T, R> Deferred<T>.then(
+    context: CoroutineContext = EmptyCoroutineContext,
+    crossinline block: suspend CoroutineScope.(T) -> R
+): Deferred<R> = uiScope().async(context) {
+    block(await())
+}
 
 infix fun <T> Deferred<T>.then(block: (T) -> Unit) = uiScope().launch {
 
