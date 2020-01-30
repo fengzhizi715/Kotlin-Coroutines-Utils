@@ -15,7 +15,7 @@ import kotlin.coroutines.CoroutineContext
  * @date: 2019-10-19 12:43
  * @version: V1.0 安全的 CoroutineScope，支持异常处理
  */
-class SafeCoroutineScope(context: CoroutineContext, errorHandler: CoroutineErrorListener?=null) : CoroutineScope,
+class SafeCoroutineScope(context: CoroutineContext, errorHandler: coroutineErrorListener?=null) : CoroutineScope,
     Closeable {
 
     override val coroutineContext: CoroutineContext = SupervisorJob() + context + UncaughtCoroutineExceptionHandler(errorHandler)
