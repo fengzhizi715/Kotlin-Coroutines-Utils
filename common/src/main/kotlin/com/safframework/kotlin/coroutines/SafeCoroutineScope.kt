@@ -1,7 +1,6 @@
 package com.safframework.kotlin.coroutines
 
 import com.safframework.kotlin.coroutines.exception.UncaughtCoroutineExceptionHandler
-import com.safframework.kotlin.coroutines.listener.CoroutineErrorListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren

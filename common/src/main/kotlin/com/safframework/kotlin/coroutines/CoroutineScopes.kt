@@ -1,6 +1,5 @@
 package com.safframework.kotlin.coroutines
 
-import com.safframework.kotlin.coroutines.listener.CoroutineErrorListener
 import kotlinx.coroutines.*
 
 /**
@@ -50,10 +49,10 @@ fun <T> asyncOnUI(block: suspend CoroutineScope.() -> T) = uiScope().async(block
 fun <T> asyncInBackground(block: suspend CoroutineScope.() -> T) = ioScope().async(block = block)
 
 
-fun ioScope(errorHandler: CoroutineErrorListener?=null) = SafeCoroutineScope(IO,errorHandler)
+fun ioScope(errorHandler: coroutineErrorListener?=null) = SafeCoroutineScope(IO,errorHandler)
 
-fun uiScope(errorHandler: CoroutineErrorListener?=null) = SafeCoroutineScope(UI,errorHandler)
+fun uiScope(errorHandler: coroutineErrorListener?=null) = SafeCoroutineScope(UI,errorHandler)
 
-fun defaultScope(errorHandler: CoroutineErrorListener?=null) = SafeCoroutineScope(Default,errorHandler)
+fun defaultScope(errorHandler: coroutineErrorListener?=null) = SafeCoroutineScope(Default,errorHandler)
 
-fun customScope(dispatcher: CoroutineDispatcher,errorHandler: CoroutineErrorListener?=null) = SafeCoroutineScope(dispatcher,errorHandler)
+fun customScope(dispatcher: CoroutineDispatcher,errorHandler: coroutineErrorListener?=null) = SafeCoroutineScope(dispatcher,errorHandler)
