@@ -1,10 +1,9 @@
 package com.safframework.kotlin.coroutines.extension
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.coroutineContext
 import kotlin.coroutines.resume
@@ -26,4 +25,11 @@ suspend fun <T> Flow<T>.toSuspend(): T {
             .onEach { continuation.resume(it) }
             .launchIn(scope)
     }
+}
+
+fun <T> Flow<T>.onCompleted(action: () -> Unit) = flow {
+
+    collect { value -> emit(value) }
+
+    action()
 }
