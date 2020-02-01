@@ -1,9 +1,7 @@
 package com.safframework.kotlin.coroutines.extension
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.coroutineContext
 import kotlin.coroutines.resume
