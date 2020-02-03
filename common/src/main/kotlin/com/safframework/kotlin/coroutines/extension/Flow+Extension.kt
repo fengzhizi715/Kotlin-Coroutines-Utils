@@ -1,7 +1,9 @@
 package com.safframework.kotlin.coroutines.extension
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.coroutineContext
 import kotlin.coroutines.resume
@@ -30,4 +32,20 @@ fun <T> Flow<T>.onCompleted(action: () -> Unit) = flow {
     collect { value -> emit(value) }
 
     action()
+}
+
+suspend fun <T> Flow<T>.takeFirst(): T? {
+    var t: T? = null
+    take(1).collect { t = it }
+    return t
+}
+
+fun <T> mergeFlows(vararg flows: Flow<T>): Flow<T> = channelFlow {
+    coroutineScope {
+        for (f in flows) {
+            launch {
+                f.collect { channel.send(it) }
+            }
+        }
+    }
 }
