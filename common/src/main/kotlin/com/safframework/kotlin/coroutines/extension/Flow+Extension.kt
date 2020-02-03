@@ -34,7 +34,7 @@ fun <T> Flow<T>.onCompleted(action: () -> Unit) = flow {
     action()
 }
 
-suspend fun <T> Flow<T>.takeFirst(): T? {
+suspend fun <T> Flow<T>.awaitFirst(): T? {
     var t: T? = null
     take(1).collect { t = it }
     return t
