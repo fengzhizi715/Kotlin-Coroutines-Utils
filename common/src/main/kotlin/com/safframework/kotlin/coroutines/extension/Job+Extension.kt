@@ -21,6 +21,13 @@ fun Job.safeCancel() {
     }
 }
 
+fun cancelAllJobs(vararg jobs:Job) {
+
+    jobs.forEach {
+        it.safeCancel()
+    }
+}
+
 inline fun Job.then(
     context: CoroutineContext = EmptyCoroutineContext,
     crossinline block: suspend CoroutineScope.() -> Unit
