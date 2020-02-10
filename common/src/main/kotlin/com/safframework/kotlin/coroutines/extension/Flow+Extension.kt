@@ -50,7 +50,9 @@ fun <T> mergeFlows(vararg flows: Flow<T>): Flow<T> = channelFlow {
     }
 }
 
-fun <T> flowError(block: () -> Throwable) = flow<T> { throw block() }
+fun <T> flowError(block: () -> Throwable) = flow<T> {
+    throw block()
+}
 
 fun <T> Flow<T>.resumeOnError(errorBlock: () -> Throwable): Flow<T> = flatMapLatest {
     flowError<T> {
