@@ -18,6 +18,11 @@ import kotlin.coroutines.resumeWithException
  * @version: V1.0 <描述当前版本功能>
  */
 
+fun <T> emitFlow(func: suspend () -> T): Flow<T> =
+    flow {
+        emit(func.invoke())
+    }
+
 suspend fun <T> Flow<T>.toSuspend(): T {
     val scope = CoroutineScope(coroutineContext)
     return suspendCancellableCoroutine<T> { continuation ->
