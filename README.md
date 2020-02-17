@@ -16,6 +16,18 @@ implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.0.6'
 
 ### 1. SafeCoroutineScope
 
+SafeCoroutineScope 的 CoroutineContext 使用了 SupervisorJob 和 CoroutineExceptionHandler。
+
+基于 SafeCoroutineScope 封装，提供了以下函数：
+
+* runOnUI() : 运行在主线程，支持异常处理、无返回结果
+
+* runInBackground(): 运行在后台线程，支持异常处理、无返回结果
+
+* asyncOnUI(): 运行在主线程，支持异常处理、有返回结果
+
+* asyncInBackground(): 运行在后台线程，支持异常处理、有返回结果
+
 ### 2. Extension
 
 #### 2.1 Job
