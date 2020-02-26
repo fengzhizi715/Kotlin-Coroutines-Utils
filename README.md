@@ -38,6 +38,8 @@ SafeCoroutineScope 的 CoroutineContext 使用了 SupervisorJob 和 CoroutineExc
 
 ### 2. Extension
 
+为 Job、Deferred、Flow 提供一系列的扩展函数
+
 #### 2.1 Job
 
 #### 2.2 Deferred
