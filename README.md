@@ -49,3 +49,8 @@ SafeCoroutineScope 的 CoroutineContext 使用了 SupervisorJob 和 CoroutineExc
 * zipWith()
 
 #### 2.3 Flow
+
+* toSuspend()
+* onCompleted()
+* awaitFirst()
+* resumeOnError()
