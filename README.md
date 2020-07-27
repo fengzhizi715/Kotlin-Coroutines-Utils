@@ -21,19 +21,12 @@ SafeCoroutineScope 的 CoroutineContext 使用了 SupervisorJob 和 CoroutineExc
 基于 SafeCoroutineScope 封装，提供了以下函数：
 
 * runOnUI() : 运行在主线程，支持异常处理、无返回结果
-
 * runInBackground(): 运行在后台线程，支持异常处理、无返回结果
-
 * asyncOnUI(): 运行在主线程，支持异常处理、有返回结果
-
 * asyncInBackground(): 运行在后台线程，支持异常处理、有返回结果
-
 * withUI(): 使用 Dispatchers.Main 切换线程
-
 * withIO(): 使用 Dispatchers.IO 切换线程
-
 * withDefault(): 使用 Dispatchers.Default 切换线程
-
 * withUnconfined(): 使用 Dispatchers.Unconfined 切换线程
 
 ### 2. Extension
@@ -42,6 +35,17 @@ SafeCoroutineScope 的 CoroutineContext 使用了 SupervisorJob 和 CoroutineExc
 
 #### 2.1 Job
 
+* safeCancel(): 安全地取消 job
+* then()
+
 #### 2.2 Deferred
+
+* then()
+* thenAsync()
+* awaitOrNull(): Deferred 返回的值以及对超时的处理，超时会返回 null
+* map()
+* flatMap()
+* concatMap()
+* zipWith()
 
 #### 2.3 Flow
