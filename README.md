@@ -8,7 +8,7 @@
 
 该库封装了 Kotlin Coroutines 常用的工具类。
 
-该库为以下几个的库的依赖：
+该库为本人以下几个库提供底层的依赖：
 
 * [RxCache](https://github.com/fengzhizi715/RxCache)
 * [SAF-Kotlin-log](https://github.com/fengzhizi715/SAF-Kotlin-log)
