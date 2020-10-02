@@ -4,6 +4,16 @@
 [![License](https://img.shields.io/badge/license-Apache%202-lightgrey.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/coroutines-utils/images/download.svg) ](https://bintray.com/fengzhizi715/maven/coroutines-utils/_latestVersion)
 
+## 介绍
+
+该库封装了 Kotlin Coroutines 常用的工具类。
+
+该库为以下几个的库的依赖：
+
+* [RxCache](https://github.com/fengzhizi715/RxCache)
+* [SAF-Kotlin-log](https://github.com/fengzhizi715/SAF-Kotlin-log)
+* [Lifecycle-Coroutines-Extension](https://github.com/fengzhizi715/Lifecycle-Coroutines-Extension)
+
 ## 下载安装
 
 Gradle:
