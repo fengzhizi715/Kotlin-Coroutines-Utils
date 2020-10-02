@@ -9,7 +9,7 @@
 Gradle:
 
 ```groovy
-implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.1.1'
+implementation 'com.safframework.kotlin.coroutines:coroutines-utils:1.1.2'
 ```
 
 ## Feature
