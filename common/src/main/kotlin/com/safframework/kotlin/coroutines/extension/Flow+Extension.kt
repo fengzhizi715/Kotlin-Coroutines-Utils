@@ -1,5 +1,6 @@
 package com.safframework.kotlin.coroutines.extension
 
+import com.safframework.kotlin.coroutines.action
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
@@ -18,9 +19,9 @@ import kotlin.coroutines.resumeWithException
  * @version: V1.0 <描述当前版本功能>
  */
 
-fun <T> emitFlow(func: suspend () -> T): Flow<T> =
+fun <T> emitFlow(block: action<T>): Flow<T> =
     flow {
-        emit(func.invoke())
+        emit(block())
     }
 
 suspend fun <T> Flow<T>.toSuspend(): T {
