@@ -6,7 +6,7 @@
 
 ## 介绍
 
-该库封装了 Kotlin Coroutines 常用的工具类。
+该库封装了 Kotlin Coroutines 常用的工具类，为本人在日常开发实践中的积累，持续更新ing
 
 该库为本人以下几个库提供底层的依赖：
 
