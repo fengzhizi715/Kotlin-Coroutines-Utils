@@ -31,7 +31,7 @@
 Gradle:
 
 ```groovy
-implementation 'com.github.fengzhizi715.Kotlin-Coroutines-Utils:common:v1.1.6'
+implementation 'com.github.fengzhizi715.Kotlin-Coroutines-Utils:common:v1.1.7'
 ```
 
 ## Feature
