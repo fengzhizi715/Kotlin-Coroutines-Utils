@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 ext {
     libraries = [
-            kotlinx_coroutines_core   : "1.6.4"
+            kotlinx_coroutines_core   : "1.7.3"
     ]
 }
 
@@ -19,7 +19,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.7.21'
+    ext.kotlin_version = '1.8.21'
 
     repositories {
         jcenter()
